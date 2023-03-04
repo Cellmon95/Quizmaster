@@ -1,0 +1,13 @@
+@font-face {
+    font-family: bubblegumSerif;
+    src: url("/fonts/BubblegumSans-Regular.ttf");
+  }
+
+html, body{
+    background-color: #FFAC1C;
+    font-family: 'bubblegumSerif';
+}
+
+button{
+    background-color: #CC5500;
+}
