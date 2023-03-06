@@ -8,7 +8,22 @@ html, body{
     font-family: 'bubblegumSerif';
 }
 
-button{
+main{
+    position: relative;
+    margin-top: 33vh;
+
+}
+
+.flex-container{
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+button, input[type=submit]{
 	background: none;
     background-color: #c55000;
     width: 252px;
@@ -27,4 +42,19 @@ button{
 h1{
     font-size: 64px;
     margin: 0;
+}
+
+label{
+    font-size: 36px;
+}
+
+input[type="submit"]{
+    margin-top: 52px;
+}
+
+input[type="text"], input[type="email"], input[type="password"]{
+    width: 250px;
+    height: 35px;
+    font-family: 'bubblegumSerif';
+    font-size: 24px;
 }
