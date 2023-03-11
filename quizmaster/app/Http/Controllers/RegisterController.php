@@ -14,6 +14,7 @@ class RegisterController extends Controller
         $user->name = $request->input('name');
         $user->password = Hash::make($request->input('password'));
         $user->email = $request->input('email');
+        $user->current_game = null;
 
         $user->save();
 

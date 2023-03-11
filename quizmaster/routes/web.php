@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DataController;
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +38,15 @@ Route::controller(LoginController::class)->group(function() {
     Route::get('/logout', 'logout');
 });
 
-Route::get('menu', function(){
+Route::controller(DataController::class)->group(function() {
+    Route::get('/upload', 'uploadCSV');
+});
+
+Route::get('/menu', function(){
     return view('mainMenu');
 })->middleware('auth');
+
+Route::controller(GameController::class)->group(function() {
+    Route::get('/game', 'startGame')->middleware('auth');
+    Route::post('/game/commit', 'checkIfAnswerIsCorrect')->middleware('auth');
+});

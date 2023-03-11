@@ -1,60 +1,82 @@
 @font-face {
-    font-family: 'bubblegumSerif';
-    src: url('../fonts/BubblegumSans-Regular.ttf');
-  }
-
-html, body{
-    background-color: #FFAC1C;
-    font-family: 'bubblegumSerif';
+  font-family: 'bubblegumSerif';
+  src: url('../fonts/BubblegumSans-Regular.ttf');
 }
 
-main{
-    position: relative;
-    margin-top: 33vh;
-
+html,
+body {
+  background-color: #ffac1c;
+  font-family: 'bubblegumSerif';
 }
 
-.flex-container{
-    gap: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+main {
+  position: relative;
+  margin-top: 33vh;
 }
 
-
-button, input[type=submit]{
-	background: none;
-    background-color: #c55000;
-    width: 252px;
-    height: 42px;
-
-    border-radius: 28px;
-
-	color: black;
-	border: none;
-	padding: 0;
-	font: inherit;
-    font-size: 36px;
-	cursor: pointer;
+.flex-container {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
-h1{
-    font-size: 64px;
-    margin: 0;
+button,
+input[type='submit'],
+input[type='button'] {
+  background: none;
+  background-color: #c55000;
+  width: 252px;
+  height: 42px;
+
+  border-radius: 28px;
+
+  color: black;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 36px;
+  cursor: pointer;
 }
 
-label{
-    font-size: 36px;
+h1 {
+  font-size: 64px;
+  margin: 0;
 }
 
-input[type="submit"]{
-    margin-top: 52px;
+label {
+  font-size: 36px;
 }
 
-input[type="text"], input[type="email"], input[type="password"]{
-    width: 250px;
-    height: 35px;
-    font-family: 'bubblegumSerif';
-    font-size: 24px;
+p {
+  font-size: 32px;
+  width: 80%;
+  text-align: center;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  font-size: 28px;
+  list-style: none;
+}
+
+input[type='submit'] {
+  margin-top: 52px;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'] {
+  width: 250px;
+  height: 35px;
+  font-family: 'bubblegumSerif';
+  font-size: 24px;
+}
+
+input[type='radio'] {
+  transform: scale(2);
 }
