@@ -29,19 +29,19 @@ class GameController extends Controller
         $user = Auth::user();
         $game = null;
 
-        if ($user->currentGame !== null) {
-            $game = Game::where('id', $user->currentGame)->first();
+        if (isset($user->current_game)) {
+            $game = Game::where('id', $user->current_game)->first();
         }
         else{
             $game = $this->createGame();
             $user->current_game = $game->id;
             $user->save();
         }
-        /*$currentQuestion = $game->current_question;
+
+        $currentQuestion = $game->current_question;
         $question = $game->questions[$currentQuestion];
 
-        return view('game', ['question' => $question]);*/
-        return '';
+        return view('game', ['question' => $question]);
     }
 
     function checkIfAnswerIsCorrect(Request $request)
@@ -62,13 +62,13 @@ class GameController extends Controller
         }
 
         if ($game->current_question < count($game->questions)) {
-            $game->current_question++;
+            $game->current_question += 2;
         }
         else{
             $questionResult = 'game_over';
         }
 
-        return view('questionResult', ['result' => $questionResult ])
+        return view('questionResult', ['result' => $questionResult ]);
     }
 
     function printRandQuestion(){

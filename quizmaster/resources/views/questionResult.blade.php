@@ -18,8 +18,8 @@
             <h1>Game Over</h1>
             @endif
 
-            <form action="/game" method="POST">
-                <input type="submit" value="continue">
+            <form action="/game" method="GET">
+                <input type="submit" value="Continue">
             </form>
         </div>
     </main>
