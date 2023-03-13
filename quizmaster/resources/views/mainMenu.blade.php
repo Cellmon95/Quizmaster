@@ -11,7 +11,7 @@
     <main class="flex-container">
         <h1>Menu</h1>
         <form action="logout" method="GET">
-            <input value="Play" type="button" formaction="game">
+            <input value="Play" type="submit" formaction="/game">
             <input value="Logout" type="submit">
         </form>
     </main>

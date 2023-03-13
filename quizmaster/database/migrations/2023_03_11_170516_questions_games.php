@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('question_id')->constrained();
             $table->foreignId('game_id')->constrained();
+            $table->integer('order')->default(-1);
         });
     }
 

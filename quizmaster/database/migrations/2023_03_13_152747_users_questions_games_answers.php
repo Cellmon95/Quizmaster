@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('games', function (Blueprint $table) {
+        Schema::create('users_questions_games_answers', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('current_question');
-
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('question_id')->constrained();
+            $table->foreignId('game_id')->constrained();
+            $table->string('answer_result');
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('games');
+        Schema::dropIfExists('users_questions_games_answers');
     }
 };

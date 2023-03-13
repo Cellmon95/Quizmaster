@@ -11,8 +11,17 @@ class GameController extends Controller
 {
     function createGame(){
         $game = new Game();
+        $game->current_question = 0;
         $game->save();
-        $game->questions()->saveMany(Question::find([1,2,3]));
+        $questions = Question::all()->take(3);
+
+        $game->questions()->saveMany($questions);
+
+        foreach ($questions as $key => $question) {
+            $question->setOrder($key, $game->id);
+        }
+
+        return $game;
     }
 
     function startGame()
@@ -24,17 +33,15 @@ class GameController extends Controller
             $game = Game::where('id', $user->currentGame)->first();
         }
         else{
-            $game = new Game();
-            $game->current_question = 0;
-            $game->save();
-            $game->questions()->saveMany(Question::find([1,2,3]));
+            $game = $this->createGame();
             $user->current_game = $game->id;
             $user->save();
         }
-        $currentQuestion = $game->current_question;
+        /*$currentQuestion = $game->current_question;
         $question = $game->questions[$currentQuestion];
 
-        return view('game', ['question' => $question]);
+        return view('game', ['question' => $question]);*/
+        return '';
     }
 
     function checkIfAnswerIsCorrect(Request $request)
@@ -43,16 +50,25 @@ class GameController extends Controller
         $game = Game::where('id', $user->current_game)->first();
         $currentQuestionIndex = $game->current_question;
         $currentQuestion = $game->questions[$currentQuestionIndex];
+        $questionResult = '';
 
         if ($currentQuestion->correct_answer === $request->input('submitedAnswer')) {
-            return 'Hurray!!!';
+            $questionResult = 'correct';
+            $game->archiveQuestion($currentQuestion, $questionResult);
         }
         else{
-            return 'Doh!!!';
+            $questionResult = 'incorrect';
+            $game->archiveQuestion($currentQuestion, $questionResult);
         }
 
-        return $request->input('submitedAnswer');
+        if ($game->current_question < count($game->questions)) {
+            $game->current_question++;
+        }
+        else{
+            $questionResult = 'game_over';
+        }
 
+        return view('questionResult', ['result' => $questionResult ])
     }
 
     function printRandQuestion(){
