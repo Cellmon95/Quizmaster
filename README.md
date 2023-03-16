@@ -1,7 +1,6 @@
 # Quizmaster
 
-The Elephant in the room is a small story about a life.
-https://elephant-in-the-room.avidus.se/
+A fun little quiz.
 
 # Installation
 Run it on a webserver. OBS IMPORTANT!!! You have to run /upload before 
