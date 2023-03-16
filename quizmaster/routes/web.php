@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\LoginController;
@@ -49,4 +50,8 @@ Route::get('/menu', function(){
 Route::controller(GameController::class)->group(function() {
     Route::get('/game', 'startGame')->middleware('auth');
     Route::post('/game/commit', 'checkIfAnswerIsCorrect')->middleware('auth');
+});
+
+Route::controller(ArchiveController::class)->group(function() {
+    Route::get('/archive', 'show')->middleware('auth');
 });

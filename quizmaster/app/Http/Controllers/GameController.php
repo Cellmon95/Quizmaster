@@ -29,8 +29,9 @@ class GameController extends Controller
         $user = Auth::user();
         $game = null;
 
+        echo $user->current_game;
         if (isset($user->current_game)) {
-            $game = Game::where('id', $user->current_game)->first();
+            $game = Game::find($user->current_game);
         }
         else{
             $game = $this->createGame();
@@ -38,18 +39,23 @@ class GameController extends Controller
             $user->save();
         }
 
-        $currentQuestion = $game->current_question;
-        $question = $game->questions[$currentQuestion];
+        if (count($game->questions) > 0) {
 
-        return view('game', ['question' => $question]);
+            $question = $game->questions[0];
+            return view('game', ['question' => $question]);
+        }
+        else{
+            $user->current_game = null;
+            $user->save();
+            return view('questionResult', ['result' => 'game_over' ]);
+        }
     }
 
     function checkIfAnswerIsCorrect(Request $request)
     {
         $user = Auth::user();
-        $game = Game::where('id', $user->current_game)->first();
-        $currentQuestionIndex = $game->current_question;
-        $currentQuestion = $game->questions[$currentQuestionIndex];
+        $game = Game::find($user->current_game);
+        $currentQuestion = $game->questions[0];
         $questionResult = '';
 
         if ($currentQuestion->correct_answer === $request->input('submitedAnswer')) {
@@ -59,13 +65,6 @@ class GameController extends Controller
         else{
             $questionResult = 'incorrect';
             $game->archiveQuestion($currentQuestion, $questionResult);
-        }
-
-        if ($game->current_question < count($game->questions)) {
-            $game->current_question += 2;
-        }
-        else{
-            $questionResult = 'game_over';
         }
 
         return view('questionResult', ['result' => $questionResult ]);

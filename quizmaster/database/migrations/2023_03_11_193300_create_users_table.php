@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreignId('current_game')->constrained('games')->default(0);
+            $table->unsignedBigInteger('current_game')->nullable();
+            $table->foreign('current_game')->references('id')->on('games');
             $table->rememberToken();
             $table->timestamps();
         });

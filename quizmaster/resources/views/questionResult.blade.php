@@ -18,9 +18,15 @@
             <h1>Game Over</h1>
             @endif
 
+            @if ($result === 'game_over')
+            <form action="/menu" method="GET">
+                <input type="submit" value="Continue">
+            </form>
+            @else
             <form action="/game" method="GET">
                 <input type="submit" value="Continue">
             </form>
+            @endif
         </div>
     </main>
 </body>

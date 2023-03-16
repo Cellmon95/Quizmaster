@@ -10,8 +10,9 @@
 <body>
     <main class="flex-container">
         <h1>Menu</h1>
-        <form action="logout" method="GET">
+        <form action="logout" method="GET" class="flex-container">
             <input value="Play" type="submit" formaction="/game">
+            <input value="Archive" type="submit" formaction="/archive">
             <input value="Logout" type="submit">
         </form>
     </main>

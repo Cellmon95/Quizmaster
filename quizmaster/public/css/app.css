@@ -80,3 +80,21 @@ input[type='password'] {
 input[type='radio'] {
   transform: scale(2);
 }
+
+.archiveContent {
+  margin: auto;
+  width: 900px;
+}
+
+.correct,
+.incorrect {
+  font-weight: bold;
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+}
