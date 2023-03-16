@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Question;
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +30,6 @@ class GameController extends Controller
         $user = Auth::user();
         $game = null;
 
-        echo $user->current_game;
         if (isset($user->current_game)) {
             $game = Game::find($user->current_game);
         }
@@ -54,6 +54,9 @@ class GameController extends Controller
     function checkIfAnswerIsCorrect(Request $request)
     {
         $user = Auth::user();
+        $validated = $request->validate([
+            'submitedAnswer' => 'required|in:alt1,alt2,alt3,alt4'
+        ]);
         $game = Game::find($user->current_game);
         $currentQuestion = $game->questions[0];
         $questionResult = '';

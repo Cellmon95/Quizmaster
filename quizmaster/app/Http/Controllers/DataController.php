@@ -14,10 +14,6 @@ class DataController extends Controller
 
         $csv->setHeaderOffset(0);
 
-        $header = $csv->getHeader(); //returns the CSV header record
-        $records = $csv->getRecords(); //returns all the CSV records as an Iterator object
-
-        $questions = [];
         foreach ($csv as $record) {
             $question = new Question();
             $question->question = $record['question'];

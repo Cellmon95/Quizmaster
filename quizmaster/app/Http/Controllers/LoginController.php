@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     function login(Request $request){
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'password' => 'required|max:255',
+        ]);
+
         $credentials = $request->only(['name', 'password']);
 
         if (Auth::attempt($credentials)) {
